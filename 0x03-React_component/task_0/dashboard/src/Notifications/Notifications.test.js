@@ -1,55 +1,27 @@
 import React from 'react';
+import NotificationItem from './NotificationItem';
 import { shallow } from 'enzyme';
-import Notifications from './Notifications';
 
-describe("Testing the <Notifications /> Component", () => {
+describe('rendering components', () => {
+	it('renders NotificationItem component without crashing', () => {
+		const wrapper = shallow(<NotificationItem />);
 
-	let wrapper;
-
-	beforeEach(() => {
-		wrapper = shallow(<Notifications />);
+		expect(wrapper.exists()).toBe(true);
 	});
 
-	it("<Notifications /> is rendered without crashing", () => {
-		expect(wrapper).toBeDefined();
+	it('renders correct html from type="default" value="test" props', () => {
+		const wrapper = shallow(<NotificationItem />);
+
+		wrapper.setProps({ type: 'default', value: 'test' });
+		expect(wrapper.html()).toEqual(
+			'<li data-notification-type="default">test</li>'
+		);
 	});
 
-	it("<Notifications /> renders NotificationItems", () => {
-		wrapper.setProps({ displayDrawer: true });
-		expect(wrapper.find('NotificationItem')).not.toHaveLength(0);
-	});
+	it('renders correct html from  html="<u>test</u>" props', () => {
+		const wrapper = shallow(<NotificationItem />);
 
-	it("<Notifications /> render the text 'Here is the list of notifications'", () => {
-		wrapper.setProps({ displayDrawer: true });
-		expect(wrapper.contains(<p>Here is the list of notifications</p>)).toEqual(true);
-	});
-
-	it("verify that the first NotificationItem element renders the right html", () => {
-		wrapper.setProps({ displayDrawer: true });
-		expect(wrapper.find("NotificationItem").first().html()).toEqual('<li data-notification-type="default">New course available</li>');
-	});
-
-	it("menu item is being displayed when displayDrawer is false", () => {
-		expect(wrapper.find('.menuItem')).toHaveLength(1);
-	});
-
-	it("div.Notifications is not being displayed when displayDrawer is false", () => {
-		expect(wrapper.find('.Notifications')).toHaveLength(0);
-	});
-});
-
-describe("Testing <Notification ", () => {
-	let wrapper;
-
-	beforeEach(() => {
-		wrapper = shallow(<Notifications displayDrawer={true} />);
-	});
-
-	it("menu item is being displayed when displayDrawer is true", () => {
-		expect(wrapper.find('.menuItem')).toHaveLength(1);
-	});
-
-	it("div.Notifications is being displayed when displayDrawer is true", () => {
-		expect(wrapper.find('.Notifications')).toHaveLength(1);
+		wrapper.setProps({ html: '<u>test</u>' });
+		expect(wrapper.html()).toEqual('<li data-urgent="true"><u>test</u></li>');
 	});
 });

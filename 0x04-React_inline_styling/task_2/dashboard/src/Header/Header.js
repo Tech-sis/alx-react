@@ -1,17 +1,17 @@
 import React from 'react';
 import logo from '../assets/holberton-logo.jpg';
-import { StyleSheet, css } from 'aphrodite';
+import { Stylesheet, css } from 'aphrodite'
 
 function Header() {
 	return (
-		<header className={css(styles.header)}>
-			<img className={css(styles.logo)} src={logo} alt='logo' />
+		<div className={css(styles.header)}>
+			<img src={logo} alt="logo" className={css(styles.logo)} />
 			<h1 className={css(styles.title)}>School dashboard</h1>
-		</header>
-	);
+		</div>
+	)
 }
 
-const styles = StyleSheet.create({
+const styles = Stylesheet.create({
 	header: {
 		display: 'flex',
 		color: '#e0344a',

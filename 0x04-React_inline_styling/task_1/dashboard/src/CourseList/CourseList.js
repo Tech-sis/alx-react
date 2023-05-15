@@ -1,58 +1,56 @@
 import React from 'react';
-import PropType from 'prop-types';
-import CourseShape from './CourseShape';
 import CourseListRow from './CourseListRow';
-import { Stylesheet, css } from 'aphrodite'
+import PropTypes from 'prop-types';
+import CourseShape from './CourseShape';
+import './CourseList.css';
+import { StyleSheet, css } from 'aphrodite';
 
-function CourseList({ listCourses }) {
+const CourseList = ({ listCourses }) => {
 	return (
-		<table id="CourseList" cellPadding="0" cellSpacing="0" className={css(styles.table)}>
+		<table className={css(styles.courseList)}>
 			<thead>
-				<CourseListRow isHeader={true} textFirstCell='Available courses' />
-				<CourseListRow isHeader={true} textFirstCell='Course name' textSecondCell="Credit" />
+				<CourseListRow textFirstCell='Available courses' isHeader={true} />
+				<CourseListRow
+					textFirstCell='Course name'
+					textSecondCell='Credit'
+					isHeader={true}
+				/>
 			</thead>
 			<tbody>
-				{
-					listCourses.length == 0 ?
-						<CourseListRow isHeader={false} textFirstCell='No course available yet' />
-						: null
-				}
-				{
-					listCourses.map((val, idx) => {
-						return <CourseListRow isHeader={false} textFirstCell={val.name} textSecondCell={val.credit} key={val.id} />
-					})
-				}
+				{listCourses.length === 0 && (
+					<CourseListRow
+						textFirstCell='No course available yet'
+						isHeader={false}
+					/>
+				)}
+
+				{listCourses.map((course) => (
+					<CourseListRow
+						key={course.id}
+						textFirstCell={course.name}
+						textSecondCell={course.credit}
+						isHeader={false}
+					/>
+				))}
 			</tbody>
 		</table>
 	);
-}
+};
 
 CourseList.defaultProps = {
-	listCourses: []
+	listCourses: [],
 };
 
-CourseList.propType = {
-	listCourses: PropType.arrayOf(CourseShape)
+CourseList.propTypes = {
+	listCourses: PropTypes.arrayOf(CourseShape),
 };
 
-const styles = Stylesheet.create({
-	th: {
-		borderBottom: '1px solid gray',
-		margin: '0',
-		padding: '0',
-		textAlign: 'left'
-	},
-
-	table: {
-		width: '90 %',
-		border: '1px solid gray',
+const styles = StyleSheet.create({
+	courseList: {
+		width: '95%',
 		margin: 'auto',
-		marginTop: '40px',
-		padding: '0'
-	},
-
-	td: {
-		paddingLeft: '3px'
+		border: '1px solid gray',
+		borderCollapse: 'collapse',
 	},
 });
 

@@ -76,12 +76,13 @@ App.propTypes = {
 
 const styles = StyleSheet.create({
 	footer: {
-		width: '100%',
-		position: 'fixed',
-		bottom: 0,
-		textAlign: 'center',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderTop: '3px solid #E11D3F',
+		padding: '1rem',
 		fontStyle: 'italic',
-		borderTop: 'thick solid #e0344a',
 	},
 });
 

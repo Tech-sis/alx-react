@@ -85,9 +85,13 @@ Notifications.propTypes = {
 
 const styles = StyleSheet.create({
 	notifications: {
-		border: 'thin dotted #e0344a',
-		padding: '4px 16px',
-		float: 'right',
+		border: '3px dotted var(--holberton-red)',
+		padding: '6px 12px',
+		position: 'absolute',
+		top: '21px',
+		right: '7px',
+		marginTop: '12px',
+		zIndex: '100',
 	},
 	menuItem: {
 		textAlign: 'right',

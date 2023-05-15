@@ -47,10 +47,11 @@ CourseList.propTypes = {
 
 const styles = StyleSheet.create({
 	courseList: {
-		width: '95%',
-		margin: 'auto',
-		border: '1px solid gray',
+		display: 'table',
+		border: '1px solid',
 		borderCollapse: 'collapse',
+		margin: '2rem auto 0 auto',
+		width: '90%',
 	},
 });
 
